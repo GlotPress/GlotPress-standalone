@@ -1905,6 +1905,14 @@ class GP_Locales {
 		$tuk->nplurals = 2;
 		$tuk->plural_expression = '(n > 1)';
 
+		$twd = new GP_Locale();
+		$twd->english_name = 'Tweants';
+		$twd->native_name = 'Twents';
+		$twd->lang_code_iso_639_3 = 'twd';
+		$twd->country_code = 'nl';
+		$twd->wp_locale = 'twd';
+		$twd->slug = 'twd';
+
 		$tzm = new GP_Locale();
 		$tzm->english_name = 'Tamazight (Central Atlas)';
 		$tzm->native_name = 'ⵜⴰⵎⴰⵣⵉⵖⵜ';
