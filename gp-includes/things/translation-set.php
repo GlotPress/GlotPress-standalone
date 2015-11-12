@@ -70,6 +70,12 @@ class GP_Translation_Set extends GP_Thing {
 				continue;
 			}
 
+			$is_fuzzy = in_array( 'fuzzy', $entry->flags );
+
+			if ( $is_fuzzy && ! apply_filters( 'translation_set_import_fuzzy_translations', true, $entry, $translations ) ) {
+				continue;
+			}
+
 			$create = false;
 			if ( $translated = $current_translations->translate_entry( $entry ) ) {
 				// we have the same string translated
@@ -91,7 +97,7 @@ class GP_Translation_Set extends GP_Thing {
 				}
 
 				$entry->translation_set_id = $this->id;
-				$entry->status = apply_filters( 'translation_set_import_status', in_array( 'fuzzy', $entry->flags ) ? 'fuzzy' : 'current' );
+				$entry->status = apply_filters( 'translation_set_import_status', $is_fuzzy ? 'fuzzy' : 'current' );
 				// check for errors
 				$translation = GP::$translation->create( $entry );
 				$translation->set_status( $entry->status );
