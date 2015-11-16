@@ -63,6 +63,7 @@ http://wordpress.org/
 	function test_unpoify() {
 		$this->assertEquals('baba', PO::unpoify('"baba"'));
 		$this->assertEquals("baba\ngugu", PO::unpoify('"baba\n"'."\t\t\t\n".'"gugu"'));
+		$this->assertEquals("baba\ngugu", PO::unpoify('"baba\n"'."\t\t\t\r\n".'"gugu"'));
 		$this->assertEquals($this->a90, PO::unpoify($this->po_a90));
 		$this->assertEquals('\\t\\n', PO::unpoify('"\\\\t\\\\n"'));
 		// wordwrapped

@@ -129,7 +129,7 @@ class PO extends Gettext_Translations {
 	 * @return string enascaped string
 	 */
 	public static function unpoify($string) {
-		$escapes = array('t' => "\t", 'n' => "\n", '\\' => '\\');
+		$escapes = array('t' => "\t", 'n' => "\n", 'r' => "\r", '\\' => '\\');
 		$lines = array_map('trim', explode("\n", $string));
 		$lines = array_map(array('PO', 'trim_quotes'), $lines);
 		$unpoified = '';
@@ -149,6 +149,10 @@ class PO extends Gettext_Translations {
 				}
 			}
 		}
+
+		// Standardise the line endings on imported content, technically PO files shouldn't contain \r
+		$unpoified = str_replace( array( "\r\n", "\r" ), "\n", $unpoified );
+
 		return $unpoified;
 	}
 
