@@ -10,7 +10,7 @@
 require_once dirname(__FILE__) . '/translations.php';
 require_once dirname(__FILE__) . '/streams.php';
 
-if ( !class_exists( 'MO' ) ):
+if ( ! class_exists( 'MO', false ) ):
 class MO extends Gettext_Translations {
 
 	var $_nplurals = 2;
@@ -27,6 +27,10 @@ class MO extends Gettext_Translations {
 		return $this->import_from_reader($reader);
 	}
 
+	/**
+	 * @param string $filename
+	 * @return bool
+	 */
 	function export_to_file($filename) {
 		$fh = fopen($filename, 'wb');
 		if ( !$fh ) return false;
@@ -35,6 +39,9 @@ class MO extends Gettext_Translations {
 		return $res;
 	}
 
+	/**
+	 * @return string|false
+	 */
 	function export() {
 		$tmp_fh = fopen("php://temp", 'r+');
 		if ( !$tmp_fh ) return false;
@@ -43,6 +50,10 @@ class MO extends Gettext_Translations {
 		return stream_get_contents( $tmp_fh );
 	}
 
+	/**
+	 * @param Translation_Entry $entry
+	 * @return bool
+	 */
 	function is_entry_good_for_export( $entry ) {
 		if ( empty( $entry->translations ) ) {
 			return false;
@@ -55,6 +66,10 @@ class MO extends Gettext_Translations {
 		return true;
 	}
 
+	/**
+	 * @param resource $fh
+	 * @return true
+	 */
 	function export_to_file_handle($fh) {
 		$entries = array_filter( $this->entries, array( $this, 'is_entry_good_for_export' ) );
 		ksort($entries);
@@ -75,21 +90,23 @@ class MO extends Gettext_Translations {
 		$current_addr++;
 		$originals_table = chr(0);
 
+		$reader = new POMO_Reader();
+
 		foreach($entries as $entry) {
 			$originals_table .= $this->export_original($entry) . chr(0);
-			$length = strlen($this->export_original($entry));
+			$length = $reader->strlen($this->export_original($entry));
 			fwrite($fh, pack('VV', $length, $current_addr));
 			$current_addr += $length + 1; // account for the NULL byte after
 		}
 
 		$exported_headers = $this->export_headers();
-		fwrite($fh, pack('VV', strlen($exported_headers), $current_addr));
+		fwrite($fh, pack('VV', $reader->strlen($exported_headers), $current_addr));
 		$current_addr += strlen($exported_headers) + 1;
 		$translations_table = $exported_headers . chr(0);
 
 		foreach($entries as $entry) {
 			$translations_table .= $this->export_translations($entry) . chr(0);
-			$length = strlen($this->export_translations($entry));
+			$length = $reader->strlen($this->export_translations($entry));
 			fwrite($fh, pack('VV', $length, $current_addr));
 			$current_addr += $length + 1;
 		}
@@ -99,6 +116,10 @@ class MO extends Gettext_Translations {
 		return true;
 	}
 
+	/**
+	 * @param Translation_Entry $entry
+	 * @return string
+	 */
 	function export_original($entry) {
 		//TODO: warnings for control characters
 		$exported = $entry->singular;
@@ -107,11 +128,18 @@ class MO extends Gettext_Translations {
 		return $exported;
 	}
 
+	/**
+	 * @param Translation_Entry $entry
+	 * @return string
+	 */
 	function export_translations($entry) {
 		//TODO: warnings for control characters
 		return $entry->is_plural ? implode(chr(0), $entry->translations) : $entry->translations[0];
 	}
 
+	/**
+	 * @return string
+	 */
 	function export_headers() {
 		$exported = '';
 		foreach($this->headers as $header => $value) {
@@ -120,6 +148,10 @@ class MO extends Gettext_Translations {
 		return $exported;
 	}
 
+	/**
+	 * @param int $magic
+	 * @return string|false
+	 */
 	function get_byteorder($magic) {
 		// The magic is 0x950412de
 
@@ -137,6 +169,9 @@ class MO extends Gettext_Translations {
 		}
 	}
 
+	/**
+	 * @param POMO_FileReader $reader
+	 */
 	function import_from_reader($reader) {
 		$endian_string = MO::get_byteorder($reader->readint32());
 		if (false === $endian_string) {
@@ -210,8 +245,7 @@ class MO extends Gettext_Translations {
 			$translation = $reader->substr( $strings, $t['pos'], $t['length'] );
 
 			if ('' === $original) {
-				$headers = $this->make_headers($translation);
-				$this->set_headers($headers);
+				$this->set_headers($this->make_headers($translation));
 			} else {
 				$entry = &$this->make_entry($original, $translation);
 				$this->entries[$entry->key()] = &$entry;
@@ -250,10 +284,17 @@ class MO extends Gettext_Translations {
 		return $entry;
 	}
 
+	/**
+	 * @param int $count
+	 * @return string
+	 */
 	function select_plural_form($count) {
 		return $this->gettext_select_plural_form($count);
 	}
 
+	/**
+	 * @return int
+	 */
 	function get_plural_forms_count() {
 		return $this->_nplurals;
 	}
