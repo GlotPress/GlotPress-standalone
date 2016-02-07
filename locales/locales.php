@@ -649,6 +649,17 @@ class GP_Locales {
 		$es_cl->google_code = 'es';
 		$es_cl->facebook_locale = 'es_LA';
 
+		$es_gt = new GP_Locale();
+		$es_gt->english_name = 'Spanish (Guatemala)';
+		$es_gt->native_name = 'Español de Guatemala';
+		$es_gt->lang_code_iso_639_1 = 'es';
+		$es_gt->lang_code_iso_639_2 = 'spa';
+		$es_gt->country_code = 'gt';
+		$es_gt->wp_locale = 'es_GT';
+		$es_gt->slug = 'es-gt';
+		$es_gt->google_code = 'es';
+		$es_cl->facebook_locale = 'es_GT';
+
 		$es_mx = new GP_Locale();
 		$es_mx->english_name = 'Spanish (Mexico)';
 		$es_mx->native_name = 'Español de México';
