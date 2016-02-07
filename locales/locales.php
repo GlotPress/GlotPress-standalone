@@ -1913,8 +1913,8 @@ class GP_Locales {
 		$tt_ru->country_code = 'tt';
 		$tt_ru->wp_locale = 'tt_RU';
 		$tt_ru->slug = 'tt';
-		$tt_ru->nplurals = 3;
-		$tt_ru->plural_expression = '(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)';
+		$tt_ru->nplurals = 1;
+		$tt_ru->plural_expression = '0';
 
 		$tuk = new GP_Locale();
 		$tuk->english_name = 'Turkmen';
