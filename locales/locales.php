@@ -636,7 +636,7 @@ class GP_Locales {
 		$es_ar->wp_locale = 'es_AR';
 		$es_ar->slug = 'es-ar';
 		$es_ar->google_code = 'es';
-		$es_ar->facebook_locale = 'es_AR';
+		$es_ar->facebook_locale = 'es_LA';
 
 		$es_cl = new GP_Locale();
 		$es_cl->english_name = 'Spanish (Chile)';
@@ -647,7 +647,7 @@ class GP_Locales {
 		$es_cl->wp_locale = 'es_CL';
 		$es_cl->slug = 'es-cl';
 		$es_cl->google_code = 'es';
-		$es_cl->facebook_locale = 'es_LA';
+		$es_cl->facebook_locale = 'es_CL';
 
 		$es_gt = new GP_Locale();
 		$es_gt->english_name = 'Spanish (Guatemala)';
@@ -658,7 +658,7 @@ class GP_Locales {
 		$es_gt->wp_locale = 'es_GT';
 		$es_gt->slug = 'es-gt';
 		$es_gt->google_code = 'es';
-		$es_cl->facebook_locale = 'es_GT';
+		$es_cl->facebook_locale = 'es_LA';
 
 		$es_mx = new GP_Locale();
 		$es_mx->english_name = 'Spanish (Mexico)';
@@ -669,7 +669,7 @@ class GP_Locales {
 		$es_mx->wp_locale = 'es_MX';
 		$es_mx->slug = 'es-mx';
 		$es_mx->google_code = 'es';
-		$es_mx->facebook_locale = 'es_LA';
+		$es_mx->facebook_locale = 'es_MX';
 
 		$es_pe = new GP_Locale();
 		$es_pe->english_name = 'Spanish (Peru)';
@@ -702,7 +702,7 @@ class GP_Locales {
 		$es_ve->wp_locale = 'es_VE';
 		$es_ve->slug = 'es-ve';
 		$es_ve->google_code = 'es';
-		$es_ve->facebook_locale = 'es_LA';
+		$es_ve->facebook_locale = 'es_VE';
 
 		$es_co = new GP_Locale();
 		$es_co->english_name = 'Spanish (Colombia)';
@@ -713,7 +713,7 @@ class GP_Locales {
 		$es_co->wp_locale = 'es_CO';
 		$es_co->slug = 'es-co';
 		$es_co->google_code = 'es';
-		$es_co->facebook_locale = 'es_LA';
+		$es_co->facebook_locale = 'es_CO';
 
 		$es = new GP_Locale();
 		$es->english_name = 'Spanish (Spain)';
