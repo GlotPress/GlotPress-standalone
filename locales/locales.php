@@ -1627,18 +1627,6 @@ class GP_Locales {
 		$ru->nplurals = 3;
 		$ru->plural_expression = '(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)';
 
-		$ru_ua = new GP_Locale();
-		$ru_ua->english_name = 'Russian (Ukraine)';
-		$ru_ua->native_name = 'украї́нська мо́ва';
-		$ru_ua->lang_code_iso_639_1 = 'ru';
-		$ru_ua->lang_code_iso_639_2 = 'rus';
-		$ru_ua->country_code = 'ua';
-		$ru_ua->wp_locale = 'ru_UA';
-		$ru_ua->slug = 'ru-ua';
-		$ru_ua->google_code = 'ru';
-		$ru_ua->nplurals = 3;
-		$ru_ua->plural_expression = '(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)';
-
 		$rue = new GP_Locale();
 		$rue->english_name = 'Rusyn';
 		$rue->native_name = 'Русиньскый';
