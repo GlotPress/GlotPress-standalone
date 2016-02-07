@@ -1831,6 +1831,18 @@ class GP_Locales {
 		$ta_lk->slug = 'ta-lk';
 		$ta_lk->google_code = 'ta';
 
+		$tah = new GP_Locale();
+		$tah->english_name = 'Tahitian';
+		$tah->native_name = 'Reo Tahiti';
+		$tah->lang_code_iso_639_1 = 'ty';
+		$tah->lang_code_iso_639_2 = 'tah';
+		$tah->lang_code_iso_639_3 = 'tah';
+		$tah->country_code = 'fr';
+		$tah->wp_locale = 'tah';
+		$tah->slug = 'tah';
+		$tah->nplurals = 2;
+		$tah->plural_expression = '(n > 1)';
+
 		$te = new GP_Locale();
 		$te->english_name = 'Telugu';
 		$te->native_name = 'తెలుగు';
