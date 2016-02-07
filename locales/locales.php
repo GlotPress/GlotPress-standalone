@@ -627,6 +627,16 @@ class GP_Locales {
 		$eo->google_code = 'eo';
 		$eo->facebook_locale = 'eo_EO';
 
+		$es = new GP_Locale();
+		$es->english_name = 'Spanish (Spain)';
+		$es->native_name = 'Español';
+		$es->lang_code_iso_639_1 = 'es';
+		$es->country_code = 'es';
+		$es->wp_locale = 'es_ES';
+		$es->slug = 'es';
+		$es->google_code = 'es';
+		$es->facebook_locale = 'es_ES';
+
 		$es_ar = new GP_Locale();
 		$es_ar->english_name = 'Spanish (Argentina)';
 		$es_ar->native_name = 'Español de Argentina';
@@ -648,6 +658,17 @@ class GP_Locales {
 		$es_cl->slug = 'es-cl';
 		$es_cl->google_code = 'es';
 		$es_cl->facebook_locale = 'es_CL';
+
+		$es_co = new GP_Locale();
+		$es_co->english_name = 'Spanish (Colombia)';
+		$es_co->native_name = 'Español de Colombia';
+		$es_co->lang_code_iso_639_1 = 'es';
+		$es_co->lang_code_iso_639_2 = 'spa';
+		$es_co->country_code = 'co';
+		$es_co->wp_locale = 'es_CO';
+		$es_co->slug = 'es-co';
+		$es_co->google_code = 'es';
+		$es_co->facebook_locale = 'es_CO';
 
 		$es_gt = new GP_Locale();
 		$es_gt->english_name = 'Spanish (Guatemala)';
@@ -703,27 +724,6 @@ class GP_Locales {
 		$es_ve->slug = 'es-ve';
 		$es_ve->google_code = 'es';
 		$es_ve->facebook_locale = 'es_VE';
-
-		$es_co = new GP_Locale();
-		$es_co->english_name = 'Spanish (Colombia)';
-		$es_co->native_name = 'Español de Colombia';
-		$es_co->lang_code_iso_639_1 = 'es';
-		$es_co->lang_code_iso_639_2 = 'spa';
-		$es_co->country_code = 'co';
-		$es_co->wp_locale = 'es_CO';
-		$es_co->slug = 'es-co';
-		$es_co->google_code = 'es';
-		$es_co->facebook_locale = 'es_CO';
-
-		$es = new GP_Locale();
-		$es->english_name = 'Spanish (Spain)';
-		$es->native_name = 'Español';
-		$es->lang_code_iso_639_1 = 'es';
-		$es->country_code = 'es';
-		$es->wp_locale = 'es_ES';
-		$es->slug = 'es';
-		$es->google_code = 'es';
-		$es->facebook_locale = 'es_ES';
 
 		$et = new GP_Locale();
 		$et->english_name = 'Estonian';
