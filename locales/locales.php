@@ -1130,6 +1130,16 @@ class GP_Locales {
 		$kab->nplurals = 2;
 		$kab->plural_expression = '(n > 1)';
 
+		$kal = new GP_Locale();
+		$kal->english_name = 'Greenlandic';
+		$kal->native_name = 'Kalaallisut';
+		$kal->lang_code_iso_639_1 = 'kl';
+		$kal->lang_code_iso_639_2 = 'kal';
+		$kal->lang_code_iso_639_3 = 'kal';
+		$kal->country_code = 'gl';
+		$kal->wp_locale = 'kal';
+		$kal->slug = 'kal';
+
 		$kin = new GP_Locale();
 		$kin->english_name = 'Kinyarwanda';
 		$kin->native_name = 'Ikinyarwanda';
