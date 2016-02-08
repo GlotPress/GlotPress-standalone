@@ -1751,7 +1751,7 @@ class GP_Locales {
 		$srd->native_name = 'Sardu';
 		$srd->lang_code_iso_639_1 = 'sc';
 		$srd->lang_code_iso_639_2 = 'srd';
-		$srd->country_code = 'srd';
+		$srd->country_code = 'it';
 		$srd->wp_locale = 'srd';
 		$srd->slug = 'srd';
 
