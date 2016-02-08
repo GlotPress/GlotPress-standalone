@@ -459,7 +459,7 @@ class GP_Locales {
 		$cy->native_name = 'Cymraeg';
 		$cy->lang_code_iso_639_1 = 'cy';
 		$cy->lang_code_iso_639_2 = 'cym';
-		$cy->country_code = 'uk';
+		$cy->country_code = 'gb';
 		$cy->wp_locale = 'cy';
 		$cy->slug = 'cy';
 		$cy->google_code = 'cy';
