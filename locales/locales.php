@@ -157,7 +157,7 @@ class GP_Locales {
 		$arq = new GP_Locale();
 		$arq->english_name = 'Algerian Arabic';
 		$arq->native_name = 'الدارجة الجزايرية';
-		$arq->lang_code_iso_639_1 = 'ar_DZ';
+		$arq->lang_code_iso_639_1 = 'ar';
 		$arq->lang_code_iso_639_3 = 'arq';
 		$arq->country_code = 'dz';
 		$arq->wp_locale = 'arq';
@@ -169,7 +169,7 @@ class GP_Locales {
 		$ary = new GP_Locale();
 		$ary->english_name = 'Moroccan Arabic';
 		$ary->native_name = 'العربية المغربية';
-		$ary->lang_code_iso_639_1 = 'ar_MA';
+		$ary->lang_code_iso_639_1 = 'ar';
 		$ary->lang_code_iso_639_3 = 'ary';
 		$ary->country_code = 'ma';
 		$ary->wp_locale = 'ary';
