@@ -395,11 +395,12 @@ class GP_Locales {
 		$ckb->english_name = 'Kurdish (Sorani)';
 		$ckb->native_name = 'كوردی‎';
 		$ckb->lang_code_iso_639_1 = 'ku';
-		$ckb->lang_code_iso_639_2 = 'ckb';
-		$ckb->country_code = 'ku';
+		$ckb->lang_code_iso_639_3 = 'ckb';
+		$ckb->country_code = 'iq';
 		$ckb->wp_locale = 'ckb';
 		$ckb->slug = 'ckb';
 		$ckb->text_direction = 'rtl';
+		$ckb->facebook_locale = 'cb_IQ';
 
 		$co = new GP_Locale();
 		$co->english_name = 'Corsican';
@@ -1184,6 +1185,15 @@ class GP_Locales {
 		$km->nplurals = 1;
 		$km->plural_expression = '0';
 
+		$kmr = new GP_Locale();
+		$kmr->english_name = 'Kurdish (Kurmanji)';
+		$kmr->native_name = 'Kurdî';
+		$kmr->lang_code_iso_639_1 = 'ku';
+		$kmr->lang_code_iso_639_3 = 'kmr';
+		$kmr->country_code = 'tr';
+		$kmr->slug = 'kmr';
+		$kmr->facebook_locale = 'ku_TR';
+
 		$kn = new GP_Locale();
 		$kn->english_name = 'Kannada';
 		$kn->native_name = 'ಕನ್ನಡ';
@@ -1213,15 +1223,6 @@ class GP_Locales {
 		$ks->lang_code_iso_639_1 = 'ks';
 		$ks->lang_code_iso_639_2 = 'kas';
 		$ks->slug = 'ks';
-
-		$ku = new GP_Locale();
-		$ku->english_name = 'Kurdish (Kurmanji)';
-		$ku->native_name = 'Kurdî';
-		$ku->lang_code_iso_639_1 = 'ku';
-		$ku->lang_code_iso_639_2 = 'kur';
-		$ku->country_code = 'ku';
-		$ku->slug = 'ku';
-		$ku->facebook_locale = 'ku_TR';
 
 		$ky = new GP_Locale();
 		$ky->english_name = 'Kirghiz';
