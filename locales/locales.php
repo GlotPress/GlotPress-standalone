@@ -1910,7 +1910,7 @@ class GP_Locales {
 		$tt_ru->native_name = 'Татар теле';
 		$tt_ru->lang_code_iso_639_1 = 'tt';
 		$tt_ru->lang_code_iso_639_2 = 'tat';
-		$tt_ru->country_code = 'tt';
+		$tt_ru->country_code = 'ru';
 		$tt_ru->wp_locale = 'tt_RU';
 		$tt_ru->slug = 'tt';
 		$tt_ru->nplurals = 1;
