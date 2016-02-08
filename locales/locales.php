@@ -874,7 +874,7 @@ class GP_Locales {
 		$fy->native_name = 'Frysk';
 		$fy->lang_code_iso_639_1 = 'fy';
 		$fy->lang_code_iso_639_2 = 'fry';
-		$fy->country_code = 'fy';
+		$fy->country_code = 'nl';
 		$fy->facebook_locale = 'fy_NL';
 		$fy->slug = 'fy';
 		$fy->wp_locale = 'fy';
