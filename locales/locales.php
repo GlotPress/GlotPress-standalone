@@ -1803,7 +1803,7 @@ class GP_Locales {
 		$ta->native_name = 'தமிழ்';
 		$ta->lang_code_iso_639_1 = 'ta';
 		$ta->lang_code_iso_639_2 = 'tam';
-		$ta->country_code = 'IN';
+		$ta->country_code = 'in';
 		$ta->wp_locale = 'ta_IN';
 		$ta->slug = 'ta';
 		$ta->google_code = 'ta';
@@ -1814,7 +1814,7 @@ class GP_Locales {
 		$ta_lk->native_name = 'தமிழ்';
 		$ta_lk->lang_code_iso_639_1 = 'ta';
 		$ta_lk->lang_code_iso_639_2 = 'tam';
-		$ta_lk->country_code = 'LK';
+		$ta_lk->country_code = 'lk';
 		$ta_lk->wp_locale = 'ta_LK';
 		$ta_lk->slug = 'ta-lk';
 		$ta_lk->google_code = 'ta';
