@@ -898,7 +898,7 @@ class GP_Locales {
 		$gd->lang_code_iso_639_1 = 'gd';
 		$gd->lang_code_iso_639_2 = 'gla';
 		$gd->lang_code_iso_639_3 = 'gla';
-		$gd->country_code = 'uk';
+		$gd->country_code = 'gb';
 		$gd->wp_locale = 'gd';
 		$gd->slug = 'gd';
 		$gd->google_code = 'gd';
