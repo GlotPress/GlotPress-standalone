@@ -234,6 +234,66 @@ class GP_Translation extends GP_Thing {
 			return;
 		}
 
+		$new_translation_set = GP::$translation_set->get( $new_translation_set_id );
+		$locale = GP_Locales::by_slug( $new_translation_set->locale );
+
+		for ( $i = 0; $i < $locale->nplurals; $i++ ) {
+			$new_translation[] = $this->{"translation_{$i}"};
+		}
+
+		/*
+		 * Don't propagate a waiting/fuzzy translation if the same translation
+		 * with the same status exists already.
+		 */
+		if ( in_array( $status, array( 'waiting', 'fuzzy' ) ) ) {
+			$existing_translations = GP::$translation->find_no_map( array(
+				'translation_set_id' => $new_translation_set_id,
+				'original_id'        => $new_original_id,
+				'status'             => $status,
+			) );
+
+			foreach ( $existing_translations as $existing_translation ) {
+				$translation = array();
+				for ( $i = 0; $i < $locale->nplurals; $i++ ) {
+					$translation[] = $existing_translation->{"translation_{$i}"};
+				}
+
+				if ( $translation == $new_translation ) {
+					return;
+				}
+			}
+		}
+
+		/*
+		 * Set a waiting translation as current if it's the same translation.
+		 */
+		if ( 'current' === $status ) {
+			$existing_translations = GP::$translation->find( array(
+				'translation_set_id' => $new_translation_set_id,
+				'original_id'        => $new_original_id,
+				'status'             => 'waiting',
+			) );
+
+			foreach ( $existing_translations as $existing_translation ) {
+				$translation = array();
+				for ( $i = 0; $i < $locale->nplurals; $i++ ) {
+					$translation[] = $existing_translation->{"translation_{$i}"};
+				}
+
+				if ( $translation == $new_translation ) {
+					// Mark as current and avoid recursion.
+					add_filter( 'enable_propagate_translations_across_projects', '__return_false' );
+					$existing_translation->set_as_current();
+					remove_filter( 'enable_propagate_translations_across_projects', '__return_false' );
+					return;
+				}
+			}
+		}
+
+		/*
+		 * If none of the above cases are matching, copy the same translation
+		 * into the new translation set.
+		 */
 		$copy = new GP_Translation( $this->fields() );
 		$copy->original_id = $new_original_id;
 		$copy->translation_set_id = $new_translation_set_id;
@@ -251,6 +311,7 @@ class GP_Translation extends GP_Thing {
 		}
 
 		$user = GP::$user->current();
+		$is_user_logged_in = $user->logged_in();
 
 		$original = GP::$original->get( $this->original_id );
 		$originals_in_other_projects = $original->get_matching_originals_in_other_projects();
@@ -270,12 +331,14 @@ class GP_Translation extends GP_Thing {
 			$current_translation = GP::$translation->find_no_map( array( 'translation_set_id' => $o_translation_set->id, 'original_id' => $o->id, 'status' => 'current' ) );
 
 			if ( ! $current_translation  ) {
-				if ( $user->logged_in() && ! $user->can( 'approve', 'translation-set', $o_translation_set->id ) ) {
-					$copy_status = 'waiting';
-				} else {
+				if ( $is_user_logged_in && ! $user->can( 'edit', 'translation-set', $o_translation_set->id ) ) {
+					continue;
+				} elseif ( $is_user_logged_in && $user->can( 'approve', 'translation-set', $o_translation_set->id ) ) {
 					$copy_status = 'current';
+				} else {
+					$copy_status = 'waiting';
 				}
-				$copy_status = apply_filters( 'translations_to_other_projects_status', $copy_status );
+				$copy_status = apply_filters( 'translations_to_other_projects_status', $copy_status, $this, $o_translation_set->id, $o->id );
 				$this->copy_into_set( $o_translation_set->id, $o->id, $copy_status );
 			}
 		}

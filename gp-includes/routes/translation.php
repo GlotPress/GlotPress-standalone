@@ -87,7 +87,7 @@ class GP_Route_Translation extends GP_Route_Main {
 
 		$export_locale = apply_filters( 'export_locale', $locale->slug, $locale );
 		$filename = sprintf( '%s-%s.'.$format->extension, str_replace( '/', '-', $project->path ), $export_locale );
-		$filename = apply_filters( 'export_translations_filename', $filename, $format, $locale, $project, $translation_set ); 
+		$filename = apply_filters( 'export_translations_filename', $filename, $format, $locale, $project, $translation_set );
 
 		$entries = GP::$translation->for_export( $project, $translation_set, gp_get( 'filters' ) );
 
@@ -196,6 +196,11 @@ class GP_Route_Translation extends GP_Route_Main {
 			}
 
 			$translation = GP::$translation->create( $data );
+
+			if ( ! $translation ) {
+				return $this->die_with_error( __( 'Error in saving the translation!' ) );
+			}
+
 			if ( ! $translation->validate() ) {
 				$error_output = '<ul>';
 				foreach ($translation->errors as $error) {

@@ -58,7 +58,7 @@ class GP_Translation_Set extends GP_Thing {
 		$locale = GP_Locales::by_slug( $this->locale );
 		$user = GP::$user->current();
 
-		$current_translations_list = GP::$translation->for_translation( $this->project, $this, 'no-limit', array('status' => 'current_or_fuzzy', 'translated' => 'yes') );
+		$current_translations_list = GP::$translation->for_translation( $this->project, $this, 'no-limit', array('status' => 'current', 'translated' => 'yes') );
 		$current_translations = new Translations();
 		foreach( $current_translations_list as $entry ) {
 			$current_translations->add_entry( $entry );
@@ -67,6 +67,12 @@ class GP_Translation_Set extends GP_Thing {
 		$translations_added = 0;
 		foreach( $translations->entries as $entry ) {
 			if ( empty( $entry->translations ) ) {
+				continue;
+			}
+
+			$is_fuzzy = in_array( 'fuzzy', $entry->flags );
+
+			if ( $is_fuzzy && ! apply_filters( 'translation_set_import_fuzzy_translations', true, $entry, $translations ) ) {
 				continue;
 			}
 
@@ -91,7 +97,7 @@ class GP_Translation_Set extends GP_Thing {
 				}
 
 				$entry->translation_set_id = $this->id;
-				$entry->status = apply_filters( 'translation_set_import_status', in_array( 'fuzzy', $entry->flags ) ? 'fuzzy' : 'current' );
+				$entry->status = apply_filters( 'translation_set_import_status', $is_fuzzy ? 'fuzzy' : 'current' );
 				// check for errors
 				$translation = GP::$translation->create( $entry );
 				$translation->set_status( $entry->status );
