@@ -138,7 +138,7 @@ class GP_Format_Android extends GP_Format {
 
 	private function escape( $string ) {
 		$string = addcslashes( $string, "'\n");
-		$string = str_replace( array( '&', '<' ), array( '&amp;', '&lt;' ), $string );
+		$string = str_replace( array( '&', '<', '"' ), array( '&amp;', '&lt;', '\"' ), $string );
 
 		return $string;
 	}
